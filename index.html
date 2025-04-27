@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regex Matcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+        .output {
+            margin-top: 20px;
+        }
+        .match {
+            color: green;
+        }
+        .no-match {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Regex Matcher</h1>
+
+    <!-- Input for matching words -->
+    <label for="wordInput">Enter a word (bahama, banana, papaya, panama):</label>
+    <input type="text" id="wordInput">
+    <button onclick="matchWord()">Check Word</button>
+    <div id="wordOutput" class="output"></div>
+
+    <!-- Input for matching currency -->
+    <label for="currencyInput">Enter a currency value ($xx.xx):</label>
+    <input type="text" id="currencyInput">
+    <button onclick="matchCurrency()">Check Currency</button>
+    <div id="currencyOutput" class="output"></div>
+
+    <script>
+        // Function to match the words
+        function matchWord() {
+            const wordPattern = /^ba(ha|na|pa)ma$/;
+            const wordInput = document.getElementById('wordInput').value;
+            const wordOutput = document.getElementById('wordOutput');
+
+            if (wordPattern.test(wordInput)) {
+                wordOutput.textContent = `"${wordInput}" matches!`;
+                wordOutput.className = 'output match';
+            } else {
+                wordOutput.textContent = `"${wordInput}" does not match.`;
+                wordOutput.className = 'output no-match';
+            }
+        }
+
+        // Function to match the currency format
+        function matchCurrency() {
+            const currencyPattern = /^\$\d{2}\.\d{2}$/;
+            const currencyInput = document.getElementById('currencyInput').value;
+            const currencyOutput = document.getElementById('currencyOutput');
+
+            if (currencyPattern.test(currencyInput)) {
+                currencyOutput.textContent = `"${currencyInput}" matches!`;
+                currencyOutput.className = 'output match';
+            } else {
+                currencyOutput.textContent = `"${currencyInput}" does not match.`;
+                currencyOutput.className = 'output no-match';
+            }
+        }
+    </script>
+
+</body>
+</html>
